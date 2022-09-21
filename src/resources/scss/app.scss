@@ -6,3 +6,8 @@
     margin-right: 4px;
     object-fit: contain;
 }
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}

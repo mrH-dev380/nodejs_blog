@@ -30,6 +30,29 @@ class CourseController {
             })
     }
 
+    // [POST] /courses/handle-form-actions
+    formActions(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Course.delete({ _id: { $in: req.body.courseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next)
+                break;
+            case 'restore':
+                Course.restore({ _id: { $in: req.body.courseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next)
+                break;
+            case 'deleteForce':
+                Course.deleteOne({ _id: { $in: req.body.courseIds } })
+                    .then(() => res.redirect('back'))
+                    .catch(next)
+                break;
+            default:
+                res.json({ message: 'Action is invalid!' })
+        }
+    }
+
     // [GET] /courses/:id/edit
     edit(req, res, next) {
         Course.findById(req.params.id)
