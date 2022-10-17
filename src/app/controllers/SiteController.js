@@ -22,7 +22,7 @@ class SiteController {
             .then(courses => {
                 // courses = courses.map(course => course.toObject());
                 res.render('home', {
-                    courses: multipleMongooseToObject(courses) // Truyền dữ liệu từ DB vào homepag
+                    courses: multipleMongooseToObject(courses) // Truyền dữ liệu từ DB vào homepage
                 })
             })
             .catch(error => next(error))

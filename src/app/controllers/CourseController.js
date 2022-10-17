@@ -34,6 +34,7 @@ class CourseController {
     formActions(req, res, next) {
         switch (req.body.action) {
             case 'delete':
+                // Vì giá trị là mảng nên cần thên $in
                 Course.delete({ _id: { $in: req.body.courseIds } })
                     .then(() => res.redirect('back'))
                     .catch(next)
